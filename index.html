@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aangifte Erfbelasting</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header>
+        <h2>Dit is een schoolopdracht!!</h2>
+    </header>
+    <main>
+        <h1>Aangifte Erfbelasting</h1>
+        <section>
+            <h2>Gegevens van de overledene</h2>
+            <form>
+                <!-- een-a -->
+                <fieldset class="een-a">
+                    <legend>Persoonsgegevens van de overledene</legend>
+                     <label for="een-a-een"> Voorletter(s)
+                        <input type="text" id="een-a-een" name="een-a-een" required>
+                    </label>
+                    <label for="een-a-twee"> Tussenvoegsel(s)
+                        <input type="text" id="een-a-twee" name="een-a-twee">
+                    </label>
+                    <label for="een-a-drie"> Achternaam
+                        <input type="text" id="een-a-drie" name="een-a-drie" required>
+                    </label>
+                    <label for="een-a-vier"> BSN overledene
+                        <input type="text" id="een-a-vier" name="een-a-vier" minlength="9" maxlength="9" required>
+                    </label>
+                    <label for="een-a-vijf"> Overlijdensdatum
+                        <input type="date" id="een-a-vijf" name="een-a-vijf" required>
+                    </label>
+                </fieldset>
+
+                <!-- een-b -->
+                <fieldset class="een-b">
+                    <fieldset>
+                        <legend>Was de overledene getrouwd of had de overledene een geregistreerde partner op het moment van overlijden?</legend>
+                        <label for="een-b-een-radio-yes"> Ja
+                            <input type="radio" id="een-b-een-radio-yes" name="een-b-een" required>
+                        </label>
+                        <label for="een-b-een-radio-no"> Nee
+                            <input type="radio" id="een-b-een-radio-no" name="een-b-een" class="ga-naar-volgende">
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Hadden de overledene en diens echtgenoot of geregistreerde partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een notariële akte?</legend>                        
+                        <label for="een-b-twee-radio-yes"> Ja
+                            <input type="radio" id="een-b-twee-radio-yes" name="een-b-twee">
+                        </label>
+                        <label for="een-b-twee-radio-no"> Nee
+                            <input type="radio" id="een-b-twee-radio-no" name="een-b-twee" class="ga-naar-volgende">
+                        </label>
+                    </fieldset>
+
+                    <label for="een-b-drie"> Upload een kopie van de akte
+                        <input type="file" id="een-b-drie" name="een-b-drie">
+                    </label>
+
+                    <fieldset>
+                        <legend>Hadden de overledene en diens partner een finaal verrekenbeding?</legend>                        
+                        <label for="een-b-vier-radio-yes"> Ja
+                            <input type="radio" id="een-b-vier-radio-yes" name="een-b-vier">
+                        </label>
+                        <label for="een-b-vier-radio-no"> Nee
+                            <input type="radio" id="een-b-vier-radio-no" name="een-b-vier">
+                        </label>
+                    </fieldset>
+
+                    <label for="een-b-vijf"> Datum huwelijkse of partnerschapsvoorwaarden <!-- doe dit met meerdere inputs-->
+                        <input type="date" id="een-b-vijf" name="een-b-vijf">
+                    </label>
+                </fieldset>
+
+                <!-- een-c -->
+                <fieldset class="een-c">
+                    <fieldset>
+                        <legend>Had de overledene kinderen?</legend>                        
+                        <label for="een-c-een-radio-yes"> Ja
+                            <input type="radio" id="een-c-een-radio-yes" name="een-c-een" required>
+                        </label>
+                        <label for="een-c-een-radio-no"> Nee
+                            <input type="radio" id="een-c-een-radio-no" name="een-c-een" class="ga-naar-volgende">
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Is een- van deze kinderen eerder overleden dan de overledene voor wie u nu aangifte doet?</legend>                        
+                        <label for="een-c-twee-radio-yes"> Ja
+                            <input type="radio" id="een-c-twee-radio-yes" name="een-c-twee">
+                        </label>
+                        <label for="een-c-twee-radio-no"> Nee
+                            <input type="radio" id="een-c-twee-radio-no" name="een-c-twee" class="ga-naar-volgende">
+                        </label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Had dit overleden kind zelf kinderen?</legend>                        
+                        <label for="een-c-drie-radio-yes"> Ja
+                            <input type="radio" id="een-c-drie-radio-yes" name="een-c-drie">
+                        </label>
+                        <label for="een-c-drie-radio-no"> Nee
+                            <input type="radio" id="een-c-drie-radio-no" name="een-c-drie">
+                        </label>
+                    </fieldset>
+                </fieldset>
+
+                <!-- een-d -->
+                <fieldset class="een-d">
+                    <fieldset>
+                        <legend>Had de overledene een testament?</legend>                        
+                        <label for="een-d-een-radio-yes"> Ja
+                            <input type="radio" id="een-d-een-radio-yes" name="een-d-een" required>
+                        </label>
+                        <label for="een-d-een-radio-no"> Nee
+                            <input type="radio" id="een-d-een-radio-no" name="een-d-een" class="ga-naar-volgende">
+                        </label>
+                    </fieldset>
+                    <label for="een-d-twee"> Protocolnummer notaris
+                        <input type="text" name="een-d-twee" id="een-d-twee" minlength="6" maxlength="6" required>
+                    </label>
+                        <label for="een-d-drie"> Voorletter(s)
+                        <input type="text" id="een-d-drie" name="een-d-drie" required>
+                    </label>
+                    <label for="een-d-vier"> Tussenvoegsel(s)
+                        <input type="text" id="een-d-vier" name="een-d-vier">
+                    </label>
+                    <label for="een-d-vijf"> Achternaam
+                        <input type="text" id="een-d-vijf" name="een-d-vijf" required>
+                    </label>
+                    <label for="een-d-zes"> Vestigingsplaats
+                        <input type="text" id="een-d-zes" name="een-d-zes" required>
+                    </label>
+                    <label for="een-d-zeven"> Datum van het testament of van de laatste wijziging
+                        <input type="date" id="een-d-zeven" name="een-d-zeven" required>
+                    </label>
+                </fieldset>
+                <button type="submit">Verzenden</button>
+            </form>
+        </section>
+    </main>
+    <footer></footer>
+</body>
+</html>
+
+<!-- voeg titels toe bij alle vragen, net zoals bij 1a is gedaan -->
+<!-- custom properties voor spacing -->
+ <!-- input type radio attribute selector, toch ervoor? -->
+  <!-- animatie -->

@@ -13,12 +13,11 @@
     <main>
         <h1>Aangifte Erfbelasting</h1>
         <section>
-            <h2>Gegevens van de overledene</h2>
             <form>
-                <!-- een-a -->
-                <fieldset class="een-a">
+                <!-- 1a Persoonsgegevens van de overledene -->
+                <fieldset>
                     <legend>Persoonsgegevens van de overledene</legend>
-                     <label for="een-a-een"> Voorletter(s)
+                    <label for="een-a-een"> Voorletter(s)
                         <input type="text" id="een-a-een" name="een-a-een" required>
                     </label>
                     <label for="een-a-twee"> Tussenvoegsel(s)
@@ -28,15 +27,17 @@
                         <input type="text" id="een-a-drie" name="een-a-drie" required>
                     </label>
                     <label for="een-a-vier"> BSN overledene
-                        <input type="text" id="een-a-vier" name="een-a-vier" minlength="9" maxlength="9" required>
+                        <input type="number" id="een-a-vier" name="een-a-vier" minlength="9" maxlength="9" required>
                     </label>
                     <label for="een-a-vijf"> Overlijdensdatum
                         <input type="date" id="een-a-vijf" name="een-a-vijf" required>
                     </label>
                 </fieldset>
 
-                <!-- een-b -->
-                <fieldset class="een-b">
+
+                <!-- 1b Partnerschap-->
+                <fieldset>
+                    <legend>Partnerschap</legend>
                     <fieldset>
                         <legend>Was de overledene getrouwd of had de overledene een geregistreerde partner op het moment van overlijden?</legend>
                         <label for="een-b-een-radio-yes"> Ja
@@ -76,8 +77,10 @@
                     </label>
                 </fieldset>
 
-                <!-- een-c -->
-                <fieldset class="een-c">
+
+                <!-- 1c Kinderen-->
+                <fieldset>
+                    <legend>Kinderen</legend>
                     <fieldset>
                         <legend>Had de overledene kinderen?</legend>                        
                         <label for="een-c-een-radio-yes"> Ja
@@ -109,8 +112,9 @@
                     </fieldset>
                 </fieldset>
 
-                <!-- een-d -->
-                <fieldset class="een-d">
+                <!-- 1d Testament-->
+                <fieldset>
+                    <legend>Testament</legend>
                     <fieldset>
                         <legend>Had de overledene een testament?</legend>                        
                         <label for="een-d-een-radio-yes"> Ja
@@ -139,6 +143,55 @@
                         <input type="date" id="een-d-zeven" name="een-d-zeven" required>
                     </label>
                 </fieldset>
+
+                <!-- 3b Erfgenamen-->
+                <fieldset>
+                    <legend>Erfgenamen</legend>
+                    <fieldset>
+                        <legend>Zijn er erfgenamen voor wie u <strong>geen</strong> aangifte doet?</legend>                        
+                        <label for="drie-b-een-radio-yes"> Ja
+                            <input type="radio" id="drie-b-een-radio-yes" name="drie-b-een" required>
+                        </label>
+                        <label for="drie-b-een-radio-no"> Nee
+                            <input type="radio" id="drie-b-een-radio-no" name="drie-b-een" class="ga-naar-volgende">
+                        </label>
+                    </fieldset>
+                    <!-- een persoon -->
+                    <fieldset class="erfgename">
+                        <legend>Persoon 1</legend>
+                        <label for="drie-b-twee"> BSN overledene
+                            <input type="number" id="drie-b-twee" name="drie-b-twee" minlength="8" maxlength="9" required>
+                        </label>
+                        <label for="drie-b-drie"> Voorletter(s)
+                            <input type="text" id="drie-b-drie" name="drie-b-drie" required>
+                        </label>
+                        <label for="drie-b-vier"> Tussenvoegsel(s)
+                            <input type="text" id="drie-b-vier" name="drie-b-vier">
+                        </label>
+                        <label for="drie-b-vijf"> Achternaam
+                            <input type="text" id="drie-b-vijf" name="drie-b-vijf" required>
+                        </label>
+                        <fieldset>
+                            <legend>Krijgt deze erfgename waarvoor u geen aangifte doet het hele vermogen?</legend>                        
+                            <label for="drie-b-zes-radio-yes"> Ja
+                                <input type="radio" id="drie-b-zes-radio-yes" name="drie-b-zes" required>
+                            </label>
+                            <label for="drie-b-zes-radio-no"> Nee
+                                <input type="radio" id="drie-b-zes-radio-no" name="drie-b-zes">
+                            </label>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Doet deze verkrijger een beroep op diens legitieme portie (wettelijke erfdeel)?</legend>                        
+                            <label for="drie-b-zeven-radio-yes"> Ja
+                                <input type="radio" id="drie-b-zeven-radio-yes" name="drie-b-zeven" required>
+                            </label>
+                            <label for="drie-b-zeven-radio-no"> Nee
+                                <input type="radio" id="drie-b-zeven-radio-no" name="drie-b-zeven">
+                            </label>
+                        </fieldset>
+                    </fieldset>
+                    <button type="button">+ Voeg erfgename toe</button>
+                </fieldset>
                 <button type="submit">Verzenden</button>
             </form>
         </section>
@@ -147,7 +200,14 @@
 </body>
 </html>
 
-<!-- voeg titels toe bij alle vragen, net zoals bij 1a is gedaan -->
-<!-- custom properties voor spacing -->
- <!-- input type radio attribute selector, toch ervoor? -->
-  <!-- animatie -->
+<!-- To do: -->
+  <!-- animatie disclosure vraag aan sanne -->
+   <!-- iets van 4 personen voor de erfgenamen en dan nieuwe pagina (robuust) -->
+    <!-- html validatie -->
+    <!-- mdn constratint validation api, blur -->
+     <!-- custom error messages in html, aria-live=polite? -->
+      <!-- focus naar de input die fout gaat -->
+      <!-- setattribute novalidate in js -->
+       <!-- custom properties voor spacing -->
+        <!-- radiobuttons als traject? -->
+         <!-- check required waar je dat moet gebruiken -->

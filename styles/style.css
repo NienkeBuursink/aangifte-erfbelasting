@@ -49,6 +49,7 @@ header{
     h2{
         text-transform: uppercase;
         color: white;
+        font-family: nssansbold, sans-serif;
     }
 }
 main{
@@ -61,12 +62,52 @@ h1{
     padding: 7rem 0 .3rem 3rem;
 }
 
-h2{
+button, input::file-selector-button{
+    position: relative;
+    padding: 1rem;
+    color: var(--accent-clr);
     font-family: nssansbold, sans-serif;
-    color: var(--text-clr);
+    background-color: transparent;
+    border-radius: var(--border-radius);
+    border-color: var(--accent-clr);
+    border-width: 1px;
+    justify-self: start;
+    border-style: solid;
+    overflow: hidden;
+    z-index: 0;
 }
 
+button::before{
+    content: "";
+    position: absolute;
+    inset: 100% 100% 0; /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset */
+    background-color: rgba(0, 0, 0, 0.172);
+    z-index: -1;
+}
 
+button:hover::before {
+    inset: 0;
+    @media (prefers-reduced-motion: no-preference) {
+        animation: button-hover 0.2s ease-out forwards;
+    }
+}
+
+input:hover::file-selector-button{
+    background-color: rgba(0, 0, 0, 0.172);
+}
+
+@keyframes button-hover{
+    from{
+        inset: 100% 0 0;
+    }
+    to{
+        inset: 0;
+    }
+}
+
+strong{
+    text-decoration: underline;
+}
 
 
 /* ///////////// */
@@ -110,12 +151,12 @@ section{
             label:has(input[type="radio"]){
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
-                gap: .3em;
+                gap: .5em;
                 input{
                     appearance: none;
                     padding: .5em;
                     border-radius: 50%;
+                    order: -1;
                 }
                 input:checked{
                     box-shadow: inset 0 0 0 .3em rgb(82, 120, 62);
@@ -128,15 +169,22 @@ section{
             padding-bottom: 2rem;
             border: var(--border-clr) 1px;
             border-style: none none solid;
+            > legend {
+                font-size: 1.3em;
+            }
+        }
+        > button{
+            background-color: var(--accent-clr);
+            color: white;
+            justify-self: auto;
         }
     }
-    button{
-        padding: 1rem;
-        color: white;
-        font-family: nssansbold, sans-serif;
-        border-radius: var(--border-radius);
-        background-color: var(--accent-clr);
-    }
+
+}
+
+.erfgename {
+    display: grid;
+    gap: 2rem;
 }
 
 
@@ -147,4 +195,17 @@ section{
 /* Met hulp van Sanne */
 fieldset fieldset:has(.ga-naar-volgende:checked) ~ :is(label,fieldset) {
     display: none;
+    @media (prefers-reduced-motion: no-preference) {
+        animation: remove-question .5s linear;
+    }
+}
+
+@keyframes remove-question{
+    from {
+        display: block;
+        transform: scaleY(1);
+    }
+    to {
+        transform: scaleY(0);
+    }
 }

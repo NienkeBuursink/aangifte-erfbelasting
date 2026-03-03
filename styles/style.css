@@ -11,7 +11,7 @@
     --accent-clr: #0063d3;
     --border-clr: grey;
     --border-radius: .3em;
-    --main-width: min(100vw, 800px);
+    --form-width: min(90vw, 800px);
 }
 
 /* fonts van ns.nl network */
@@ -52,14 +52,16 @@ header{
         font-family: nssansbold, sans-serif;
     }
 }
-main{
-    width: var(--main-width);
-}
 
 h1{
     font-family: nssans, sans-serif;
     color: light-dark(#003082, #ffc917);
-    padding: 7rem 0 .3rem 3rem;
+    padding: 7rem 0 .5rem;
+}
+
+a{
+    color: var(--accent-clr);
+    font-family: nssansbold, sans-serif;
 }
 
 button, input::file-selector-button{
@@ -75,6 +77,7 @@ button, input::file-selector-button{
     border-style: solid;
     overflow: hidden;
     z-index: 0;
+    cursor: pointer;
 }
 
 button::before{
@@ -92,6 +95,10 @@ button:hover::before {
     }
 }
 
+label{
+    cursor: pointer;
+}
+
 input:hover::file-selector-button{
     background-color: rgba(0, 0, 0, 0.172);
 }
@@ -106,7 +113,7 @@ input:hover::file-selector-button{
 }
 
 strong{
-    text-decoration: underline;
+    font-size: x-large;
 }
 
 
@@ -115,21 +122,18 @@ strong{
 /* //////////// */
 section{
     display: grid;
-    gap: .3rem;
-    margin: 0 3rem 3rem 3rem;
-    padding: 3rem;
-    background-color: var(--form-clr);
-    border-radius: var(--border-radius);
+    place-items: center;
     font-family: nssans, sans-serif;
     form{
         display: grid;
+        width: var(--form-width);
         gap: 2rem;
         fieldset{
-            width: 100%;
             legend{
-                padding-bottom: .5em;
                 color: var(--text-clr);
                 font-family: nssansbold, sans-serif;
+                float: left;
+                padding-bottom: .5em;
             }
             label{
                 display: grid;
@@ -163,18 +167,22 @@ section{
                 }
             }
         }
+        fieldset:has(input[type="radio"]):not(:has(fieldset)) legend {
+            float: none;
+        }
         > fieldset{
             display: grid;
             gap: 2rem;
-            padding-bottom: 2rem;
-            border: var(--border-clr) 1px;
-            border-style: none none solid;
+            padding: 3rem;
+            background-color: var(--form-clr);
+            border-radius: var(--border-radius);
             > legend {
                 font-size: 1.3em;
             }
         }
         > button{
             background-color: var(--accent-clr);
+            margin-bottom: 5rem;
             color: white;
             justify-self: auto;
         }
@@ -182,10 +190,65 @@ section{
 
 }
 
-.erfgename {
-    display: grid;
-    gap: 2rem;
+/* ///////////// */
+/* MARK: Erfgenamen
+/* //////////// */
+.erfgenamen{
+    > button{
+        display: none;
+    }
+    .erfgename{
+        position: relative;
+        display: grid;
+        gap: 2rem;
+        border-bottom: solid var(--border-clr) 1px;
+        padding-bottom: 2rem;
+        &.toegevoegd{
+            opacity: 0;
+            transform: translateY(-20rem) scale(0.95);
+
+            transition: opacity 0s, transform 0s;
+            @media (prefers-reduced-motion: no-preference) {
+                transition: opacity 0.5s, transform 0.5s;
+            }
+            >button{
+                position: absolute;
+                right: 0;
+                aspect-ratio: 1;
+                display: grid;
+                place-items: center;
+                width: 2rem;
+                padding: .2rem;
+                span{
+                    display: block;
+                    background-color: var(--accent-clr);
+                    width: 90%;
+                    height: 1px;
+                    grid-row: 1;
+                    grid-column: 1;
+                    rotate: 45deg;
+                    &:last-of-type{
+                        rotate: -45deg;
+                    }
+                }
+            }
+            &.show{
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+    }
+    .erfgename:last-of-type{
+        border: none;
+        padding: 0;
+    }
 }
+
+.hide-js {
+    display: none !important;
+}
+
+
 
 
 /* ///////////// */

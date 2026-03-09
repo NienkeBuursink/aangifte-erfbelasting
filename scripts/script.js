@@ -1,17 +1,23 @@
+// MARK: Variabelen
 const erfgenamenSection = document.querySelector(".erfgenamen")
 const erfgenamen = document.querySelectorAll(".erfgename")
 const eersteErfgename = document.querySelector(".erfgename")
 const addButton = document.querySelector(".erfgenamen button")
+const anchorToPersonsPage = document.querySelector("a")
 
 let i = 1
 
+// MARK: Displays veranderen
 erfgenamen.forEach((erfgename) => {
     if (erfgename !== eersteErfgename){
         erfgename.classList.add("hide-js")
         addButton.style.display = "block"  // https://stackoverflow.com/questions/72462390/how-to-change-an-attribute-value-in-css-through-js
     }
 })
+anchorToPersonsPage.style.display = "none"
 
+
+// MARK: Personen toevoegen
 addButton.addEventListener("click", insertPerson)
 
 function insertPerson() {
@@ -24,16 +30,16 @@ function insertPerson() {
                             <span></span>
                         </button>
                         <label for="erfgename-${i}-bsn"> BSN overledene
-                            <input type="number" id="erfgename-${i}-bsn" name="erfgename-${i}-bsn" minlength="8" maxlength="9" >
+                            <input type="text" id="erfgename-${i}-bsn" name="erfgename-${i}-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-${i}-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-${i}-letters" name="erfgename-${i}-letters" >
+                            <input type="text" id="erfgename-${i}-letters" name="erfgename-${i}-letters" pattern="([A-Z]\.)+" >
                         </label>
                         <label for="erfgename-${i}-tussenvoegsels"> Tussenvoegsel(s)
-                            <input type="text" id="erfgename-${i}-tussenvoegsels" name="erfgename-${i}-tussenvoegsels">
+                            <input type="text" id="erfgename-${i}-tussenvoegsels" name="erfgename-${i}-tussenvoegsels" pattern="[A-Za-z' ]+" >
                         </label>
                         <label for="erfgename-${i}-achternaam"> Achternaam
-                            <input type="text" id="erfgename-${i}-achternaam" name="erfgename-${i}-achternaam" >
+                            <input type="text" id="erfgename-${i}-achternaam" name="erfgename-${i}-achternaam" pattern="[A-Z][a-z]+">
                         </label>
                         <fieldset>
                             <legend>Krijgt deze erfgename waarvoor u geen aangifte doet het hele vermogen?</legend>                        
@@ -56,9 +62,7 @@ function insertPerson() {
                     </fieldset>`
 	addButton.insertAdjacentHTML("beforebegin", personHTML);
     const lastAdded = document.querySelector(".toegevoegd:last-of-type")
-    requestAnimationFrame(() => { // chatgpt gevraagd waarom de animation niet werkte met alleen lastAdded.classList.add("show");. Moest in een kleine functie voor een delay
-        lastAdded.classList.add("show")
-    });
+    lastAdded.style.display = "grid"
 };
 
 
@@ -74,6 +78,6 @@ erfgenamenSection.addEventListener("click", (e) => {
 })
 
 function removeErfgename(erfgename) {
-    erfgename.classList.remove("show")
+    erfgename.style.display = "none"
 }
 

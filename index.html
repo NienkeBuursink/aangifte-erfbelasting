@@ -17,19 +17,19 @@
             <form>
                 <!-- MARK: Gegevens-->
                 <!-- 1a Persoonsgegevens van de overledene -->
-                <fieldset>
+                <fieldset> 
                     <legend>Persoonsgegevens van de overledene</legend>
                     <label for="een-a-een"> Voorletter(s)
-                        <input type="text" id="een-a-een" name="een-a-een" required>
+                        <input type="text" id="een-a-een" name="een-a-een" pattern="([A-Z]\.)+" required> <!--https://regexr.com/-->
                     </label>
                     <label for="een-a-twee"> Tussenvoegsel(s)
-                        <input type="text" id="een-a-twee" name="een-a-twee">
+                        <input type="text" id="een-a-twee" name="een-a-twee" pattern="[A-Za-z' ]++">
                     </label>
                     <label for="een-a-drie"> Achternaam
-                        <input type="text" id="een-a-drie" name="een-a-drie" required>
+                        <input type="text" id="een-a-drie" name="een-a-drie" pattern="[A-Z][a-z]+" required>
                     </label>
                     <label for="een-a-vier"> BSN overledene
-                        <input type="number" id="een-a-vier" name="een-a-vier" minlength="9" maxlength="9" required>
+                        <input type="text" id="een-a-vier" name="een-a-vier" pattern="[0-9]{8,9}" required>
                     </label>
                     <label for="een-a-vijf"> Overlijdensdatum
                         <input type="date" id="een-a-vijf" name="een-a-vijf" required>
@@ -127,19 +127,19 @@
                         </label>
                     </fieldset>
                     <label for="een-d-twee"> Protocolnummer notaris
-                        <input type="text" name="een-d-twee" id="een-d-twee" minlength="6" maxlength="6" required>
+                        <input type="text" name="een-d-twee" id="een-d-twee" pattern="[0-9]{6}" required>
                     </label>
                         <label for="een-d-drie"> Voorletter(s)
-                        <input type="text" id="een-d-drie" name="een-d-drie" required>
+                        <input type="text" id="een-d-drie" name="een-d-drie" pattern="([A-Z]\.)+" required>
                     </label>
                     <label for="een-d-vier"> Tussenvoegsel(s)
-                        <input type="text" id="een-d-vier" name="een-d-vier">
+                        <input type="text" id="een-d-vier" name="een-d-vier" pattern="[A-Za-z' ]+">
                     </label>
                     <label for="een-d-vijf"> Achternaam
-                        <input type="text" id="een-d-vijf" name="een-d-vijf" required>
+                        <input type="text" id="een-d-vijf" name="een-d-vijf" pattern="[A-Z][a-z]+" required>
                     </label>
                     <label for="een-d-zes"> Vestigingsplaats
-                        <input type="text" id="een-d-zes" name="een-d-zes" required>
+                        <input type="text" id="een-d-zes" name="een-d-zes" pattern="[A-Za-z' ]+" required>
                     </label>
                     <label for="een-d-zeven"> Datum van het testament of van de laatste wijziging
                         <input type="date" id="een-d-zeven" name="een-d-zeven" required>
@@ -164,16 +164,16 @@
                     <fieldset class="erfgename">
                         <legend>Persoon 1</legend>
                         <label for="erfgename-een-bsn"> BSN overledene
-                            <input type="number" id="erfgename-een-bsn" name="erfgename-een-bsn" minlength="8" maxlength="9" >
+                            <input type="text" id="erfgename-een-bsn" name="erfgename-een-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-een-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-een-letters" name="erfgename-een-letters" >
+                            <input type="text" id="erfgename-een-letters" name="erfgename-een-letters" pattern="([A-Z]\.)+" >
                         </label>
                         <label for="erfgename-een-tussenvoegsels"> Tussenvoegsel(s)
-                            <input type="text" id="erfgename-een-tussenvoegsels" name="erfgename-een-tussenvoegsels">
+                            <input type="text" id="erfgename-een-tussenvoegsels" name="erfgename-een-tussenvoegsels" pattern="[A-Za-z' ]+" >
                         </label>
                         <label for="erfgename-een-achternaam"> Achternaam
-                            <input type="text" id="erfgename-een-achternaam" name="erfgename-een-achternaam" >
+                            <input type="text" id="erfgename-een-achternaam" name="erfgename-een-achternaam" pattern="[A-Z][a-z]+">
                         </label>
                         <fieldset>
                             <legend>Krijgt deze erfgename waarvoor u geen aangifte doet het hele vermogen?</legend>                        
@@ -199,16 +199,16 @@
                     <fieldset class="erfgename">
                         <legend>Persoon 2</legend>
                         <label for="erfgename-twee-bsn"> BSN overledene
-                            <input type="number" id="erfgename-twee-bsn" name="erfgename-twee-bsn" minlength="8" maxlength="9" >
+                            <input type="text" id="erfgename-twee-bsn" name="erfgename-twee-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-twee-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-twee-letters" name="erfgename-twee-letters" >
+                            <input type="text" id="erfgename-twee-letters" name="erfgename-twee-letters" pattern="([A-Z]\.)+" >
                         </label>
                         <label for="erfgename-twee-tussenvoegsels"> Tussenvoegsel(s)
-                            <input type="text" id="erfgename-twee-tussenvoegsels" name="erfgename-twee-tussenvoegsels">
+                            <input type="text" id="erfgename-twee-tussenvoegsels" name="erfgename-twee-tussenvoegsels" pattern="[A-Za-z' ]+" >
                         </label>
                         <label for="erfgename-twee-achternaam"> Achternaam
-                            <input type="text" id="erfgename-twee-achternaam" name="erfgename-twee-achternaam" >
+                            <input type="text" id="erfgename-twee-achternaam" name="erfgename-twee-achternaam" pattern="[A-Z][a-z]+">
                         </label>
                         <fieldset>
                             <legend>Krijgt deze erfgename waarvoor u geen aangifte doet het hele vermogen?</legend>                        
@@ -234,16 +234,16 @@
                     <fieldset class="erfgename">
                         <legend>Persoon 3</legend>
                         <label for="erfgename-drie-bsn"> BSN overledene
-                            <input type="number" id="erfgename-drie-bsn" name="erfgename-drie-bsn" minlength="8" maxlength="9" >
+                            <input type="text" id="erfgename-drie-bsn" name="erfgename-drie-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-drie-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-drie-letters" name="erfgename-drie-letters" >
+                            <input type="text" id="erfgename-drie-letters" name="erfgename-drie-letters" pattern="([A-Z]\.)+" >
                         </label>
                         <label for="erfgename-drie-tussenvoegsels"> Tussenvoegsel(s)
-                            <input type="text" id="erfgename-drie-tussenvoegsels" name="erfgename-drie-tussenvoegsels">
+                            <input type="text" id="erfgename-drie-tussenvoegsels" name="erfgename-drie-tussenvoegsels" pattern="[A-Za-z' ]+" >
                         </label>
                         <label for="erfgename-drie-achternaam"> Achternaam
-                            <input type="text" id="erfgename-drie-achternaam" name="erfgename-drie-achternaam" >
+                            <input type="text" id="erfgename-drie-achternaam" name="erfgename-drie-achternaam" pattern="[A-Z][a-z]+">
                         </label>
                         <fieldset>
                             <legend>Krijgt deze erfgename waarvoor u geen aangifte doet het hele vermogen?</legend>                        
@@ -269,16 +269,16 @@
                     <fieldset class="erfgename">
                         <legend>Persoon 4</legend>
                         <label for="erfgename-vier-bsn"> BSN overledene
-                            <input type="number" id="erfgename-vier-bsn" name="erfgename-vier-bsn" minlength="8" maxlength="9" >
+                            <input type="text" id="erfgename-vier-bsn" name="erfgename-vier-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-vier-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-vier-letters" name="erfgename-vier-letters" >
+                            <input type="text" id="erfgename-vier-letters" name="erfgename-vier-letters" pattern="([A-Z]\.)+" >
                         </label>
                         <label for="erfgename-vier-tussenvoegsels"> Tussenvoegsel(s)
-                            <input type="text" id="erfgename-vier-tussenvoegsels" name="erfgename-vier-tussenvoegsels">
+                            <input type="text" id="erfgename-vier-tussenvoegsels" name="erfgename-vier-tussenvoegsels" pattern="[A-Za-z' ]+" >
                         </label>
                         <label for="erfgename-vier-achternaam"> Achternaam
-                            <input type="text" id="erfgename-vier-achternaam" name="erfgename-vier-achternaam" >
+                            <input type="text" id="erfgename-vier-achternaam" name="erfgename-vier-achternaam" pattern="[A-Z][a-z]+">
                         </label>
                         <fieldset>
                             <legend>Krijgt deze erfgename waarvoor u geen aangifte doet het hele vermogen?</legend>                        
@@ -299,7 +299,7 @@
                             </label>
                         </fieldset>
                     </fieldset>
-                    <a href="meer-erfgenamen.html" class="hide-js">Meer erfgenamen toevoegen?</a>
+                    <a href="meer-erfgenamen.html">Meer erfgenamen toevoegen?</a>
                     <button type="button">+ Voeg erfgename toe</button>
                 </fieldset>
                 <button type="submit">Verzenden</button>
@@ -313,14 +313,18 @@
 </html>
 
 <!-- To do: -->
-  <!-- animatie disclosure vraag aan sanne -->
-    <!-- html validatie -->
+   <!-- js punten toevoegen na input -->
+    <!-- bsn elfproef gebeuren -->
+     <!-- personen dichtklappen -->
     <!-- mdn -> constratint validation api, blur -->
      <!-- custom error messages in html, aria-live=polite? -->
       <!-- focus naar de input die fout gaat -->
       <!-- setattribute novalidate in js -->
        <!-- custom properties voor spacing -->
-        <!-- radiobuttons als traject? -->
          <!-- check required waar je dat moet gebruiken -->
           <!-- required toevoegen en weghalen met js -->
-          <!-- media print -->
+           <!-- kalender niet in de toekomst -->
+           <!-- radiobuttons als traject? -->
+
+          <!-- media print? -->
+             

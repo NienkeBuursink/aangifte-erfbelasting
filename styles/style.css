@@ -8,8 +8,11 @@
 	--bg-clr: light-dark(#ffc917, #003082);
     --form-clr: light-dark(white, #ffc917);
  	--text-clr: #003082;
+    --user-valid: #4fb00e;
+    --user-invalid: red;
     --accent-clr: #0063d3;
     --border-clr: grey;
+    --button-hover: rgba(0, 0, 0, 0.172);
     --border-radius: .3em;
     --form-width: min(90vw, 800px);
 }
@@ -70,7 +73,7 @@ button, input::file-selector-button{
     color: var(--accent-clr);
     font-family: nssansbold, sans-serif;
     background-color: transparent;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius  );
     border-color: var(--accent-clr);
     border-width: 1px;
     justify-self: start;
@@ -84,7 +87,7 @@ button::before{
     content: "";
     position: absolute;
     inset: 100% 100% 0; /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/inset */
-    background-color: rgba(0, 0, 0, 0.172);
+    background-color: var(--button-hover);
     z-index: -1;
 }
 
@@ -95,14 +98,6 @@ button:hover::before {
     }
 }
 
-label{
-    cursor: pointer;
-}
-
-input:hover::file-selector-button{
-    background-color: rgba(0, 0, 0, 0.172);
-}
-
 @keyframes button-hover{
     from{
         inset: 100% 0 0;
@@ -111,6 +106,45 @@ input:hover::file-selector-button{
         inset: 0;
     }
 }
+
+label{
+    cursor: pointer;
+    position: relative;
+    &:has(input:user-valid:is([type="text"], [type="number"], [type="date"]))::before {
+        position: absolute;
+        content: "✓";
+        right: 0;
+        bottom: 0;
+        transform: translateX(1.5em);
+        color: var(--user-valid);
+        width: 1.2em;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        text-align: center;
+        border: solid 1px var(--user-valid);
+    }
+}
+
+input{
+    &:user-valid{
+        border: solid 2px var(--user-valid);
+    }
+    &:user-invalid{
+        border: solid 2px var(--user-invalid);
+    }
+    &:focus{
+        outline: none;
+        box-shadow: none;
+        border: solid 3px var(--accent-clr);
+    }
+}
+
+
+input:hover::file-selector-button{
+    background-color: var(--button-hover);
+}
+
+
 
 strong{
     font-size: x-large;
@@ -150,6 +184,17 @@ section{
                     background-color: transparent;
                     border: none;
                     padding: 0;
+                    &:focus{
+                        &::file-selector-button{        
+                            border: solid 3px var(--accent-clr);  
+                            background-color: var(--button-hover);   
+                        }
+                    }  
+                }
+                /* https://stackoverflow.com/questions/76844615/how-to-style-the-calendar-icon-in-a-date-input */
+                input[type="date"]::-webkit-calendar-picker-indicator {
+                    /* https://angel-rs.github.io/css-color-filter-generator/ */
+                    filter: brightness(0) saturate(100%) invert(21%) sepia(81%) saturate(2570%) hue-rotate(201deg) brightness(105%) contrast(101%);
                 }
             }
             label:has(input[type="radio"]){
@@ -203,44 +248,27 @@ section{
         gap: 2rem;
         border-bottom: solid var(--border-clr) 1px;
         padding-bottom: 2rem;
-        &.toegevoegd{
-            opacity: 0;
-            transform: translateY(-20rem) scale(0.95);
-
-            transition: opacity 0s, transform 0s;
-            @media (prefers-reduced-motion: no-preference) {
-                transition: opacity 0.5s, transform 0.5s;
-            }
-            >button{
-                position: absolute;
-                right: 0;
-                aspect-ratio: 1;
-                display: grid;
-                place-items: center;
-                width: 2rem;
-                padding: .2rem;
-                span{
-                    display: block;
-                    background-color: var(--accent-clr);
-                    width: 90%;
-                    height: 1px;
-                    grid-row: 1;
-                    grid-column: 1;
-                    rotate: 45deg;
-                    &:last-of-type{
-                        rotate: -45deg;
-                    }
+        >button{
+            position: absolute;
+            right: 0;
+            aspect-ratio: 1;
+            display: grid;
+            place-items: center;
+            width: 2rem;
+            padding: .2rem;
+            span{
+                display: block;
+                background-color: var(--accent-clr);
+                width: 90%;
+                height: 1px;
+                grid-row: 1;
+                grid-column: 1;
+                rotate: 45deg;
+                &:last-of-type{
+                    rotate: -45deg;
                 }
             }
-            &.show{
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
         }
-    }
-    .erfgename:last-of-type{
-        border: none;
-        padding: 0;
     }
 }
 
@@ -258,17 +286,4 @@ section{
 /* Met hulp van Sanne */
 fieldset fieldset:has(.ga-naar-volgende:checked) ~ :is(label,fieldset) {
     display: none;
-    @media (prefers-reduced-motion: no-preference) {
-        animation: remove-question .5s linear;
-    }
-}
-
-@keyframes remove-question{
-    from {
-        display: block;
-        transform: scaleY(1);
-    }
-    to {
-        transform: scaleY(0);
-    }
 }

@@ -121,7 +121,7 @@ label{
         aspect-ratio: 1;
         border-radius: 50%;
         text-align: center;
-        border: solid 1px var(--user-valid);
+        border: solid 2px var(--user-valid);
     }
 }
 
@@ -283,7 +283,20 @@ section{
 /* MARK: Algorithm
 /* //////////// */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Next-sibling_combinator */
-/* Met hulp van Sanne */
-fieldset fieldset:has(.ga-naar-volgende:checked) ~ :is(label,fieldset) {
+
+fieldset fieldset:has(.ga-naar-volgende:checked) ~ :is(label,fieldset){ /* Met hulp van Sanne */
     display: none;
 }
+
+fieldset fieldset:has(.ga-naar-volgende) ~ :is(label,fieldset){
+    opacity: .4;
+    pointer-events: none;
+}
+
+fieldset fieldset:has(.ga-naar-volgende):has(input:checked) ~ :is(label,fieldset){
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* vraag om hulp! */

@@ -1,13 +1,64 @@
 // MARK: Variabelen
+const BSNinputs = document.querySelectorAll('input[pattern="[0-9]{8,9}"]')
 const erfgenamenSection = document.querySelector(".erfgenamen")
 const erfgenamen = document.querySelectorAll(".erfgename")
 const eersteErfgename = document.querySelector(".erfgename")
 const addButton = document.querySelector(".erfgenamen button")
 const anchorToPersonsPage = document.querySelector("a")
 
-let i = 1
+let started = false
 
-// MARK: Displays veranderen
+// MARK: Elf proef
+BSNinputs.forEach((BSNinput) => {
+    BSNinput.addEventListener("blur", checkLength)
+    if (started === true){
+        BSNinput.addEventListener("input", checkLength)
+    }
+})
+
+function checkLength(e) {
+    const inputElement = e.target;
+    let bsn = e.target.value
+    if(bsn.length === 8){ // https://stackoverflow.com/questions/12164751/check-input-value-length
+        bsn = "0" + bsn
+        // console.log(bsn)
+        elfProef(bsn, inputElement)
+    } else if(bsn.length === 9){
+        elfProef(bsn, inputElement)
+    } else {
+        inputElement.setCustomValidity("BSN moet 8 of 9 cijfers zijn");
+        inputElement.reportValidity()
+        started = true
+    }
+}
+
+
+function elfProef(bsn, inputElement){
+    const numberString = bsn.split("")
+    let sum = 0
+    let times = 9
+    numberString.forEach((number) =>{
+        if (times === 1){
+            times = -1
+        }
+        let timesResult = number*times
+        // console.log(number + "x" + times + "=" + timesResult)
+        times--
+        sum = sum + timesResult
+    })
+    console.log(sum)
+    if (sum % 11 === 0){ // chatgpt prompt: hoe check ik of de (sum / 11) decimalen heeft?
+        inputElement.setCustomValidity("");
+    } else{
+        inputElement.setCustomValidity("Jij liegt >:(");
+        inputElement.reportValidity();
+        let started = true
+    }
+}
+
+
+
+// MARK: Displays personen
 erfgenamen.forEach((erfgename) => {
     if (erfgename !== eersteErfgename){
         erfgename.classList.add("hide-js")
@@ -19,6 +70,8 @@ anchorToPersonsPage.style.display = "none"
 
 // MARK: Personen toevoegen
 addButton.addEventListener("click", insertPerson)
+
+let i = 1
 
 function insertPerson() {
     i++
@@ -33,7 +86,7 @@ function insertPerson() {
                             <input type="text" id="erfgename-${i}-bsn" name="erfgename-${i}-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-${i}-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-${i}-letters" name="erfgename-${i}-letters" pattern="([A-Z]\.)+" >
+                            <input type="text" id="erfgename-${i}-letters" name="erfgename-${i}-letters" pattern="[A-Z](\.|([A-Z]\.)+)" >
                         </label>
                         <label for="erfgename-${i}-tussenvoegsels"> Tussenvoegsel(s)
                             <input type="text" id="erfgename-${i}-tussenvoegsels" name="erfgename-${i}-tussenvoegsels" pattern="[A-Za-z' ]+" >

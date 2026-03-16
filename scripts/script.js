@@ -48,17 +48,16 @@ function elfProef(bsn, inputElement){
     })
     console.log(sum)
     if (sum % 11 === 0){ // chatgpt prompt: hoe check ik of de (sum / 11) decimalen heeft?
-        inputElement.setCustomValidity("");
+        inputElement.setCustomValidity("")
     } else{
-        inputElement.setCustomValidity("Jij liegt >:(");
-        inputElement.reportValidity();
+        inputElement.setCustomValidity("Jij liegt >:(")
         let started = true
     }
 }
 
 
 
-// MARK: Displays personen
+// MARK: Displays als er JS is
 erfgenamen.forEach((erfgename) => {
     if (erfgename !== eersteErfgename){
         erfgename.classList.add("hide-js")
@@ -68,7 +67,7 @@ erfgenamen.forEach((erfgename) => {
 anchorToPersonsPage.style.display = "none"
 
 
-// MARK: Personen toevoegen
+// MARK: Pers. toevoegen
 addButton.addEventListener("click", insertPerson)
 
 let i = 1
@@ -119,6 +118,7 @@ function insertPerson() {
 };
 
 
+// MARK: Pers. verwijderen
 erfgenamenSection.addEventListener("click", (e) => {
     const removeButton = e.target.closest(".remove") //https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
     if (!removeButton) return
@@ -126,11 +126,9 @@ erfgenamenSection.addEventListener("click", (e) => {
     const erfgenameFieldset = removeButton.closest(".erfgename")
     if (!erfgenameFieldset) return
 
-    removeErfgename(erfgenameFieldset)
+    erfgenameFieldset.style.display = "none"
     i--
 })
 
-function removeErfgename(erfgename) {
-    erfgename.style.display = "none"
-}
+// MARK: Pers. inklappen
 

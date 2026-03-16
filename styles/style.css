@@ -123,6 +123,19 @@ label{
         text-align: center;
         border: solid 2px var(--user-valid);
     }
+    &:has(input:user-invalid:is([type="text"], [type="number"], [type="date"]))::before {
+        position: absolute;
+        content: "✗";
+        right: 0;
+        bottom: 0;
+        transform: translateX(1.5em);
+        color: var(--user-invalid);
+        width: 1.2em;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        text-align: center;
+        border: solid 2px var(--user-invalid);
+    }
 }
 
 input{
@@ -201,14 +214,15 @@ section{
                 display: flex;
                 align-items: center;
                 gap: .5em;
+                margin-block: .8em;
                 input{
                     appearance: none;
-                    padding: .5em;
+                    padding: 1.5em;
                     border-radius: 50%;
                     order: -1;
                 }
                 input:checked{
-                    box-shadow: inset 0 0 0 .3em rgb(82, 120, 62);
+                    box-shadow: inset 0 0 0 1em rgb(82, 120, 62);
                 }
             }
         }
@@ -288,15 +302,19 @@ fieldset fieldset:has(.ga-naar-volgende:checked) ~ :is(label,fieldset){ /* Met h
     display: none;
 }
 
-fieldset fieldset:has(.ga-naar-volgende) ~ :is(label,fieldset){
-    opacity: .4;
-    pointer-events: none;
-}
-
-fieldset fieldset:has(.ga-naar-volgende):has(input:checked) ~ :is(label,fieldset){
+fieldset fieldset:has(.ga-naar-volgende):has(input:checked) ~ :is(label,fieldset),
+.erfgenamen:has(.ga-naar-volgende):has(input:checked) > :is(button,a){
     opacity: 1;
     pointer-events: auto;
 }
 
+fieldset fieldset:has(.ga-naar-volgende) ~ :is(label,fieldset),
+.erfgenamen:has(.ga-naar-volgende) > :is(button,a),
+fieldset fieldset:has(.ga-naar-volgende):has(input:checked) ~ :has(.ga-naar-volgende):not(:has(input:checked)) ~ :is(label,fieldset){ 
+    opacity: .2;
+    pointer-events: none;
+}
 
-/* vraag om hulp! */
+.erfgenamen :has(.ga-naar-volgende:checked) ~ :is(button,a){
+    display: none !important;
+}

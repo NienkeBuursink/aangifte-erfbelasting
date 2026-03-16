@@ -3,7 +3,7 @@ const BSNinputs = document.querySelectorAll('input[pattern="[0-9]{8,9}"]')
 const erfgenamenSection = document.querySelector(".erfgenamen")
 const erfgenamen = document.querySelectorAll(".erfgename")
 const eersteErfgename = document.querySelector(".erfgename")
-const addButton = document.querySelector(".erfgenamen button")
+const addButton = document.querySelector(".erfgenamen > button")
 const anchorToPersonsPage = document.querySelector("a")
 
 let started = false
@@ -61,10 +61,15 @@ function elfProef(bsn, inputElement){
 erfgenamen.forEach((erfgename) => {
     if (erfgename !== eersteErfgename){
         erfgename.classList.add("hide-js")
-        addButton.style.display = "block"  // https://stackoverflow.com/questions/72462390/how-to-change-an-attribute-value-in-css-through-js
     }
 })
+
+addButton.style.display = "block"  // https://stackoverflow.com/questions/72462390/how-to-change-an-attribute-value-in-css-through-js
 anchorToPersonsPage.style.display = "none"
+const collapseArrows = document.querySelectorAll(".erfgename legend button")
+    collapseArrows.forEach(arrow => {
+        arrow.style.setProperty("display", "block", "important"); // chatGPT prompt: hoe zorg ik ervoor dat een !important in css wordt overschreven door een style.display = "block"
+})
 
 
 // MARK: Pers. toevoegen
@@ -74,9 +79,8 @@ let i = 1
 
 function insertPerson() {
     i++
-    console.log(i)
 	let personHTML = `<fieldset class="erfgename toegevoegd">
-                        <legend>Persoon ${i}</legend>
+                        <legend>Persoon ${i} <button aria-label="Persoon in- of uitklappen">⏷</button></legend>
                         <button type="button" aria-label="Erfgename ${i} verwijderen" class="remove">
                             <span></span>
                             <span></span>
@@ -115,7 +119,37 @@ function insertPerson() {
 	addButton.insertAdjacentHTML("beforebegin", personHTML);
     const lastAdded = document.querySelector(".toegevoegd:last-of-type")
     lastAdded.style.display = "grid"
-};
+    collapseOthers(lastAdded)
+}
+
+// MARK: Pers. inklappen
+function collapseOthers(lastAdded){
+    const allErfgename = document.querySelectorAll(".erfgename")
+    allErfgename.forEach(erfgename => {
+        if(erfgename !== lastAdded){
+            erfgename.classList.add("collapsed")
+
+        }
+    })
+    const collapseArrows = document.querySelectorAll(".erfgename legend button")
+    collapseArrows.forEach(arrow => {
+        arrow.style.setProperty("display", "block", "important"); // chatGPT prompt: hoe zorg ik ervoor dat een !important in css wordt overschreven door een style.display = "block"
+    })  
+}
+
+function setupCollapseArrows(){
+    document.addEventListener("click", (e) => {
+        const arrow = e.target.closest(".erfgename legend button")
+        if (!arrow) return
+
+        e.preventDefault()
+        const collapseErfgename = arrow.closest(".erfgename")
+        if (!collapseErfgename) return
+        collapseErfgename.classList.toggle("collapsed")
+    })
+}
+
+setupCollapseArrows()
 
 
 // MARK: Pers. verwijderen
@@ -130,5 +164,5 @@ erfgenamenSection.addEventListener("click", (e) => {
     i--
 })
 
-// MARK: Pers. inklappen
+
 

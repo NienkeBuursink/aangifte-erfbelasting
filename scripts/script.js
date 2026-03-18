@@ -9,8 +9,9 @@ const anchorToPersonsPage = document.querySelector("a")
 const submitButton = document.querySelector("form > button")
 const saveDataLink = document.querySelector("form > a")
 
-
 let started = false
+
+
 
 // MARK: Elf proef
 BSNinputs.forEach((BSNinput) => {
@@ -57,7 +58,6 @@ function elfProef(bsn, inputElement){
         let started = true
     }
 }
-
 
 
 
@@ -133,7 +133,6 @@ function insertPerson() {
 
 
 
-
 // MARK: Pers. inklappen
 function collapseOthers(lastAdded){
     const allErfgename = document.querySelectorAll(".erfgename")
@@ -165,7 +164,6 @@ setupCollapseArrows()
 
 
 
-
 // MARK: Pers. verwijderen
 erfgenamenSection.addEventListener("click", (e) => {
     const removeButton = e.target.closest(".remove") //https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
@@ -181,11 +179,9 @@ erfgenamenSection.addEventListener("click", (e) => {
 
 
 
-
 // MARK: Local storage opslaan
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 // https://blog.logrocket.com/localstorage-javascript-complete-guide/
-
 saveDataLink.addEventListener("click", saveData)
 
 function saveData(e) {
@@ -227,7 +223,6 @@ if (savedData) {
         }
     });
 }
-
 
 
 

@@ -20,7 +20,7 @@
                 <fieldset> 
                     <legend>Persoonsgegevens van de overledene</legend>
                     <label for="een-a-een"> Voorletter(s) <!--https://regexr.com/-->
-                        <input type="text" id="een-a-een" name="een-a-een" pattern="[A-Z](\.|([A-Z]\.)+)" required> <!--https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Disjunction-->
+                        <input type="text" id="een-a-een" name="een-a-een" pattern="([A-Z]|([A-Z]\.)+)" required> <!--https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Disjunction-->
                     </label>
                     <label for="een-a-twee"> Tussenvoegsel(s)
                         <input type="text" id="een-a-twee" name="een-a-twee" pattern="[A-Za-z' ]++">
@@ -127,22 +127,22 @@
                         </label>
                     </fieldset>
                     <label for="een-d-twee"> Protocolnummer notaris
-                        <input type="text" name="een-d-twee" id="een-d-twee" pattern="[0-9]{6}" required>
+                        <input type="text" name="een-d-twee" id="een-d-twee" pattern="[0-9]{6}">
                     </label>
                         <label for="een-d-drie"> Voorletter(s)
-                        <input type="text" id="een-d-drie" name="een-d-drie" pattern="[A-Z](\.|([A-Z]\.)+)" required>
+                        <input type="text" id="een-d-drie" name="een-d-drie" pattern="([A-Z]|([A-Z]\.)+)">
                     </label>
                     <label for="een-d-vier"> Tussenvoegsel(s)
                         <input type="text" id="een-d-vier" name="een-d-vier" pattern="[A-Za-z' ]+">
                     </label>
                     <label for="een-d-vijf"> Achternaam
-                        <input type="text" id="een-d-vijf" name="een-d-vijf" pattern="[A-Z][a-z]+" required>
+                        <input type="text" id="een-d-vijf" name="een-d-vijf" pattern="[A-Z][a-z]+">
                     </label>
                     <label for="een-d-zes"> Vestigingsplaats
-                        <input type="text" id="een-d-zes" name="een-d-zes" pattern="[A-Za-z' ]+" required>
+                        <input type="text" id="een-d-zes" name="een-d-zes" pattern="[A-Za-z' ]+">
                     </label>
                     <label for="een-d-zeven"> Datum van het testament of van de laatste wijziging
-                        <input type="date" id="een-d-zeven" name="een-d-zeven" required>
+                        <input type="date" id="een-d-zeven" name="een-d-zeven">
                     </label>
                 </fieldset>
 
@@ -167,7 +167,7 @@
                             <input type="text" id="erfgename-een-bsn" name="erfgename-een-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-een-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-een-letters" name="erfgename-een-letters" pattern="[A-Z](\.|([A-Z]\.)+)" >
+                            <input type="text" id="erfgename-een-letters" name="erfgename-een-letters" pattern="([A-Z]|([A-Z]\.)+)" >
                         </label>
                         <label for="erfgename-een-tussenvoegsels"> Tussenvoegsel(s)
                             <input type="text" id="erfgename-een-tussenvoegsels" name="erfgename-een-tussenvoegsels" pattern="[A-Za-z' ]+" >
@@ -202,7 +202,7 @@
                             <input type="text" id="erfgename-twee-bsn" name="erfgename-twee-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-twee-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-twee-letters" name="erfgename-twee-letters" pattern="[A-Z](\.|([A-Z]\.)+)" >
+                            <input type="text" id="erfgename-twee-letters" name="erfgename-twee-letters" pattern="([A-Z]|([A-Z]\.)+)" >
                         </label>
                         <label for="erfgename-twee-tussenvoegsels"> Tussenvoegsel(s)
                             <input type="text" id="erfgename-twee-tussenvoegsels" name="erfgename-twee-tussenvoegsels" pattern="[A-Za-z' ]+" >
@@ -237,7 +237,7 @@
                             <input type="text" id="erfgename-drie-bsn" name="erfgename-drie-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-drie-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-drie-letters" name="erfgename-drie-letters" pattern="[A-Z](\.|([A-Z]\.)+)" >
+                            <input type="text" id="erfgename-drie-letters" name="erfgename-drie-letters" pattern="([A-Z]|([A-Z]\.)+)" >
                         </label>
                         <label for="erfgename-drie-tussenvoegsels"> Tussenvoegsel(s)
                             <input type="text" id="erfgename-drie-tussenvoegsels" name="erfgename-drie-tussenvoegsels" pattern="[A-Za-z' ]+" >
@@ -272,7 +272,7 @@
                             <input type="text" id="erfgename-vier-bsn" name="erfgename-vier-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-vier-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-vier-letters" name="erfgename-vier-letters" pattern="[A-Z](\.|([A-Z]\.)+)" >
+                            <input type="text" id="erfgename-vier-letters" name="erfgename-vier-letters" pattern="([A-Z]|([A-Z]\.)+)" >
                         </label>
                         <label for="erfgename-vier-tussenvoegsels"> Tussenvoegsel(s)
                             <input type="text" id="erfgename-vier-tussenvoegsels" name="erfgename-vier-tussenvoegsels" pattern="[A-Za-z' ]+" >
@@ -303,17 +303,14 @@
                     <button type="button">+ Voeg erfgename toe</button>
                 </fieldset>
                 <button type="submit">Verzenden</button>
+                <a href="gegevens-opslaan.html">Sla uw gegevens op en ga later verder</a>
             </form>
         </section>
     </main>
-    <footer>
-
-    </footer>
 </body>
 </html>
 
 <!-- To do: -->
-    <!-- localstorage -->
     <!-- check required waar je dat moet gebruiken -->
     <!-- required toevoegen en weghalen met js -->
     <!-- kalender niet in de toekomst -->

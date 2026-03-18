@@ -1,10 +1,14 @@
 // MARK: Variabelen
+const allInputs = document.querySelectorAll("input")
 const BSNinputs = document.querySelectorAll('input[pattern="[0-9]{8,9}"]')
 const erfgenamenSection = document.querySelector(".erfgenamen")
 const erfgenamen = document.querySelectorAll(".erfgename")
 const eersteErfgename = document.querySelector(".erfgename")
 const addButton = document.querySelector(".erfgenamen > button")
 const anchorToPersonsPage = document.querySelector("a")
+const submitButton = document.querySelector("form > button")
+const saveDataLink = document.querySelector("form > a")
+
 
 let started = false
 
@@ -17,7 +21,7 @@ BSNinputs.forEach((BSNinput) => {
 })
 
 function checkLength(e) {
-    const inputElement = e.target;
+    const inputElement = e.target
     let bsn = e.target.value
     if(bsn.length === 8){ // https://stackoverflow.com/questions/12164751/check-input-value-length
         bsn = "0" + bsn
@@ -26,8 +30,7 @@ function checkLength(e) {
     } else if(bsn.length === 9){
         elfProef(bsn, inputElement)
     } else {
-        inputElement.setCustomValidity("BSN moet 8 of 9 cijfers zijn");
-        inputElement.reportValidity()
+        inputElement.setCustomValidity("BSN moet 8 of 9 cijfers zijn")
         started = true
     }
 }
@@ -46,7 +49,7 @@ function elfProef(bsn, inputElement){
         times--
         sum = sum + timesResult
     })
-    console.log(sum)
+    // console.log(sum)
     if (sum % 11 === 0){ // chatgpt prompt: hoe check ik of de (sum / 11) decimalen heeft?
         inputElement.setCustomValidity("")
     } else{
@@ -54,6 +57,7 @@ function elfProef(bsn, inputElement){
         let started = true
     }
 }
+
 
 
 
@@ -70,6 +74,11 @@ const collapseArrows = document.querySelectorAll(".erfgename legend button")
     collapseArrows.forEach(arrow => {
         arrow.style.setProperty("display", "block", "important"); // chatGPT prompt: hoe zorg ik ervoor dat een !important in css wordt overschreven door een style.display = "block"
 })
+
+saveDataLink.style.display = "block"
+submitButton.style.margin = "0"
+
+
 
 
 // MARK: Pers. toevoegen
@@ -89,7 +98,7 @@ function insertPerson() {
                             <input type="text" id="erfgename-${i}-bsn" name="erfgename-${i}-bsn" pattern="[0-9]{8,9}">
                         </label>
                         <label for="erfgename-${i}-letters"> Voorletter(s)
-                            <input type="text" id="erfgename-${i}-letters" name="erfgename-${i}-letters" pattern="[A-Z](\.|([A-Z]\.)+)" >
+                            <input type="text" id="erfgename-${i}-letters" name="erfgename-${i}-letters" pattern="([A-Z]|([A-Z]\.)+)" >
                         </label>
                         <label for="erfgename-${i}-tussenvoegsels"> Tussenvoegsel(s)
                             <input type="text" id="erfgename-${i}-tussenvoegsels" name="erfgename-${i}-tussenvoegsels" pattern="[A-Za-z' ]+" >
@@ -116,11 +125,14 @@ function insertPerson() {
                             </label>
                         </fieldset>
                     </fieldset>`
-	addButton.insertAdjacentHTML("beforebegin", personHTML);
+	addButton.insertAdjacentHTML("beforebegin", personHTML)
     const lastAdded = document.querySelector(".toegevoegd:last-of-type")
     lastAdded.style.display = "grid"
     collapseOthers(lastAdded)
 }
+
+
+
 
 // MARK: Pers. inklappen
 function collapseOthers(lastAdded){
@@ -152,6 +164,8 @@ function setupCollapseArrows(){
 setupCollapseArrows()
 
 
+
+
 // MARK: Pers. verwijderen
 erfgenamenSection.addEventListener("click", (e) => {
     const removeButton = e.target.closest(".remove") //https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
@@ -166,3 +180,62 @@ erfgenamenSection.addEventListener("click", (e) => {
 
 
 
+
+
+// MARK: Local storage opslaan
+// https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+// https://blog.logrocket.com/localstorage-javascript-complete-guide/
+
+saveDataLink.addEventListener("click", saveData)
+
+function saveData(e) {
+    e.preventDefault()
+    localStorage.clear()
+    const formData = {} //chatGPT prompt: waarom komt er een lege array uit mijn console.log(savedData)? -> van [] naar {}
+
+    allInputs.forEach((input) => {
+        if (input.type === "radio"){
+            if (input.checked) {
+                formData[input.name] = input.id //chatGPT prompt: hoe sla ik verschillende values en ids op in een array?
+            }
+        }
+        if (input.value !== "" && input.type !== "radio") {
+            formData[input.name] = input.value
+        }
+    })
+    console.log(formData)
+    localStorage.setItem("formData", JSON.stringify(formData)) 
+    window.open("gegevens-opslaan.html");
+}
+
+
+
+// MARK: Local storage ophalen
+const savedData = JSON.parse(localStorage.getItem('formData'))
+// console.log(savedData)
+
+if (savedData) {
+    allInputs.forEach((input) => {
+        if (input.type === "radio") {
+            if (input.id === savedData[input.name]) {
+                input.checked = true
+            }
+        } else {
+            if (savedData[input.name]) {
+                input.value = savedData[input.name]
+            }
+        }
+    });
+}
+
+
+
+
+// MARK: Clear local storage 
+submitButton.addEventListener("click", submit)
+
+function submit(){
+    if (savedData){
+        localStorage.clear()
+    }
+}

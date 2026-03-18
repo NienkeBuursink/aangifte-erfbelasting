@@ -7,6 +7,7 @@
 	color-scheme:light dark;
 	--bg-clr: light-dark(#ffc917, #003082);
     --form-clr: light-dark(white, #ffc917);
+    --save-btn-clr: light-dark(#003082, white);
  	--text-clr: #003082;
     --user-valid: #4fb00e;
     --user-invalid: red;
@@ -241,9 +242,14 @@ section{
         }
         > button{
             background-color: var(--accent-clr);
-            margin-bottom: 5rem;
             color: white;
             justify-self: auto;
+            margin-bottom: 5rem;
+        }
+        > a{
+            color: var(--save-btn-clr);
+            margin-bottom: 5rem;
+            display: none;
         }
     }
 
@@ -349,10 +355,10 @@ section{
 
 
 
-
 /* ///////////// */
 /* MARK: Algorithm
 /* //////////// */
+
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/Next-sibling_combinator */
 
 fieldset fieldset:has(.ga-naar-volgende:checked) ~ :is(label,fieldset){ /* Met hulp van Sanne */
